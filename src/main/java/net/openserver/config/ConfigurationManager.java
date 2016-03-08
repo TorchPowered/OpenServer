@@ -4,6 +4,7 @@ import net.openserver.OpenServer;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 /**
@@ -33,6 +34,7 @@ public class ConfigurationManager {
             for (PropertyKey key : PropertyKey.values()) {
                 configurationManager.properties.setProperty(key.getStringRepresentation(), key.getDefaultEntry());
             }
+            configurationManager.properties.store(new FileOutputStream(configurationManager.getFile()), "OpenServer Configuration");
             configurationManager.properties.load(new FileInputStream(configurationManager.getFile()));
         } else {
             configurationManager.properties.load(new FileInputStream(configurationManager.getFile()));
