@@ -1,5 +1,7 @@
 package net.openserver.config;
 
+import net.openserver.OpenServer;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -22,6 +24,9 @@ public class ConfigurationManager {
     }
 
     public static ConfigurationManager init() throws Exception {
+        if(!(OpenServer.getServer().getConfigurationManager() == null)) {
+            return null;
+        }
         ConfigurationManager configurationManager = new ConfigurationManager();
         if(!configurationManager.getFile().exists()) {
             configurationManager.getFile().createNewFile();
